@@ -1,0 +1,224 @@
+/* <dtml-with base_properties> (do not remove this :) */
+/* <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either :) */
+
+/* person view styles */
+
+#groupdescription{
+    border-bottom:3px solid #D7D7D7;
+    padding:0.2em 0 0.2em 0;
+    color:#767676;
+}
+#groupdescription, #persondescription{
+    border-bottom:3px solid #b7b7b7;
+    padding:0.2em 0 0.2em 0;
+}
+
+#groupname{
+    font-size:1.4em;
+    margin:0.5em 0 0 0;
+    padding:0;
+    letter-spacing:0.05em;
+}
+
+#personbody, #full_bibliography {
+    color:#414141;
+}
+
+#personheader h1{
+    font-size:2em;
+    letter-spacing:0.1em;
+    border:0;
+    margin-bottom:0.2em;
+}
+
+#publications ul{
+    font-size:0.95em;
+}
+
+#full_bibliography h1{
+    font-size:1.8em;
+    letter-spacing:0.1em;
+    margin-bottom:1.3em;
+    padding-bottom:0.2em;
+    border-bottom:3px solid #b7b7b7;
+    clear:both;
+}
+
+.profile_link{
+   display:block;
+   float:right;
+   height:20px;
+   font-size:0.9em;
+}
+
+#profile_link_forward{
+   margin:1.6em 0 1em 0;
+   padding:7px 32px 0 11px;
+   background:url('forward_arrow.gif') no-repeat 100% 50%;
+   border:0px solid red;
+}
+
+#profile_link_back{
+   margin:0;
+   padding:7px 8px 0 32px;
+   background:url('back_arrow.gif') no-repeat 0% 50%;
+   border:0px solid red;
+}
+
+p.body{
+   margin-top:1.5em;
+}
+
+#personheader #jobtitle {
+    font-size:1.0em;
+    margin-bottom:0em;
+    padding-bottom:0.2em;
+    color:#6a6a6a;
+    border-bottom:1px solid #D7D7D7;
+}
+
+#personbody h2, #full_bibliography h2, .kupu h2 {
+    border-bottom:2px solid #d7d7d7;
+    font-size:1.4em;
+    letter-spacing:0.1em;
+    margin:1em 0 0.4em 0;
+    padding-bottom:0.1em;
+}
+
+#full_bibliography h2{
+   font-size:1.4em;
+   letter-spacing:0.1em;
+   margin:1em 0 0.4em 0;
+   padding-bottom:0.1em;
+}
+
+#personbody h3 {
+    font-size:1.1em;
+    font-weight:bold;
+    margin-top:0.8em;
+}
+
+#personbody h2, #personbody h3, #personheader h1 {
+    /*color:#333;*/
+
+    font-weight:normal;
+}
+
+#personbody #personrightcolumn {
+    margin:0;
+    padding:0;
+    width:35%;
+    float:right;
+}
+
+#personbody #personleftcolumn {
+    width:61%;
+    padding-right:2%;
+    float:left;
+}
+
+
+#personbody .documentDescription {
+    font-size:1.2em;
+    color:#333;
+    padding:0;
+    margin-top:1em 0 0 0;
+}
+
+#personbody #summaryimage {
+	padding:0.5em 0 0 1em;
+    width:200px;
+	float:right;
+}
+
+#personbody #summary {
+    margin:1em 0 0 0;
+    padding:0.5em 0 0 0;
+    color:black;
+    font-size:1.0em;
+    border-top:2px solid #d7d7d7;
+}
+
+#personbody table {
+    margin:0;
+    border-collapse:collapse;
+}
+
+#personbody th {
+    padding:0 1em 0em 0;
+    text-align:left;
+}
+
+#personbody th, #personbody td {
+    border-bottom:1px dotted #d7d7d7;
+    padding:0.3em 1em 0.2em 0;
+}
+
+#personbody #last th, #personbody #last td {
+	border:0;
+}
+
+#personbody #contactDetails {
+	color:#333;
+    margin-top:1.8em;
+    padding:0;
+}
+
+#personbody #contactDetails p {
+    margin:0;
+    padding:0;
+}
+
+#personbody #publications ul{
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+
+#personbody #publications li{
+	margin:1.4em 0 0 0;
+	padding:0;	
+}
+
+#personbody .link-mailto {
+	padding-left:20px;
+}
+
+
+#personbyline .documentByLine {
+	clear:both;
+        padding-top:2em;
+}
+
+a.Person {
+        background-image:none;
+        padding: 2px 0px 2px 2px;
+}
+
+#personbody #personrightcolumn {
+        font-size:0.95em;
+}
+
+#personbody #personrightcolumn .link-external {
+padding-left:0;
+background-image:none;
+}
+
+#kupu-editor-biography iframe.kupu-editor-iframe,
+#kupu-editor-additional_info iframe.kupu-editor-iframe {
+height:250px;
+
+}
+
+.editTable td {border:none;}
+
+#ora-footer {
+    font-size:80%;
+    color:#666;
+    margin-top:20px;
+    padding-top:10px;
+    clear:both;
+    border-top:1px solid #D7D7D7;
+             }
+
+/* </dtml-with> */

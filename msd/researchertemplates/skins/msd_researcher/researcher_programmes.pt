@@ -1,0 +1,17 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      >
+<body>
+    <div id="programmes" metal:define-macro="programmes">
+	<tal:define define="progview context/@@researcher_programmes|nothing" condition="progview">
+        <h2>Programmes</h2>
+	
+	<ul>
+		<li tal:repeat="item progview/getProgrammes">
+			<a tal:attributes="href item/absolute_url" tal:content="item/Title" />
+		</li>
+	</ul>
+    </tal:define>                
+    </div>
+</body>
+</html>

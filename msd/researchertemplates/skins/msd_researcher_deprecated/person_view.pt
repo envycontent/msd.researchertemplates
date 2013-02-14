@@ -1,0 +1,51 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="msd.researchertemplates">
+<body>
+
+	<metal:main fill-slot="main">
+	    <metal:main define-macro="main">
+
+<!-- please refer to the hCard/vCard specification on microformats.org -->
+    <tal:view define="view context/@@researcher_view">
+    <div class="vcard">
+        <div id="personheader">
+          
+         <metal:personHeader use-macro="here/person_header/macros/person_header" />
+         <metal:description use-macro="here/person_description/macros/person_description" />
+
+        </div>
+      
+        <div id="personbody">
+            <!-- start rightcolumn -->
+            <div id="personrightcolumn"> 
+                <metal:themes use-macro="here/person_themes/macros/person_themes" />
+                <metal:collaboration use-macro="here/person_collaborations/macros/collaborations" />
+                <metal:additionalInfo use-macro="here/person_additional/macros/additional_info" />
+                <metal:seealso use-macro="here/person_seealso/macros/seealso" />
+                <metal:bibliography use-macro="here/person_bibliography/macros/bibliography" />
+            </div>
+            <!-- end rightcolumn -->  
+                        
+            <!-- start left column -->       
+            <div id="personleftcolumn">
+                        <metal:contact use-macro="here/person_contact/macros/person_contact" />
+                
+            <!-- research -->
+            <metal:researchsummary use-macro="here/person_research/macros/person_research" />
+            <metal:funding use-macro="here/person_funding/macros/funding" />
+            <metal:biography use-macro="here/person_biography/macros/biography" />
+	    <metal:interests use-macro="here/person_interests/macros/interests" />
+            </div> 
+                                 
+         <!-- end leftcolumn -->   
+        </div>
+    </div>
+    </tal:view>
+    </metal:main>
+
+
+</metal:main>
+</body>
+</html>

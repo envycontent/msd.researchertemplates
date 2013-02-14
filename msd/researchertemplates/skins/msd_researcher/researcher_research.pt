@@ -1,0 +1,20 @@
+<metal:researchmacro define-macro="research">
+
+  <div id="research">
+    <div id="summary">
+
+      <h2 i18n:translate="heading_research_summary">Research summary</h2>
+
+      <div id="summaryimage">
+           <img tal:attributes="src view/getImageURLMini" alt="" />
+        <p class="discreet"
+           tal:content="view/getImageCaption">Image Caption</p>
+      </div>
+      
+
+      <p tal:replace="structure view/getSummary" />
+
+    </div>   
+  </div>
+  
+</metal:researchmacro>

@@ -1,0 +1,17 @@
+<!-- please refer to the hCard/vCard specification on microformats.org -->
+
+<!-- please refer to the hCard/vCard specification on microformats.org -->
+
+<metal:descriptionmacro define-macro="description">
+
+    <tal:block tal:define="groupname view/getGroupName | nothing; 
+                                     desc view/Description | nothing">   
+        <div id="groupname" tal:condition="python: groupname" 
+                            tal:content="groupname"/> 
+        <div id="research_desc"
+             tal:condition="python: desc"
+             tal:content="structure desc">
+        </div>  
+    </tal:block>
+
+</metal:descriptionmacro>

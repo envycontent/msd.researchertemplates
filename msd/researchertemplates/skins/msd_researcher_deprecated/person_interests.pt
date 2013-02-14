@@ -1,0 +1,12 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" i18n:domain="RDSLocal">
+  <body>
+    
+    <div metal:define-macro="interests">
+      <!--interests details-->
+      <div id="interests" tal:condition="view/getInterests">
+        <h2 i18n:translate="heading_interests">Interests</h2>
+        <div i18n:translate="" tal:content="structure view/getInterests" />
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,55 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<body>		
+		
+        <div metal:define-macro="collaborations" tal:define="view context/@@researchercollaborations_view">
+			<!--collaborations-->
+			<div id="collaborations">
+				<tal:collaborations tal:define="collaborations view/getGroupMembers" tal:condition="collaborations">
+					<h2 i18n:translate="heading_group_members">Group Members</h2>
+                   
+                    <ul>
+					<tal:block repeat="row collaborations">
+                       <tal:define define="fullname row/fullName;
+                                           url row/url;
+                                           role row/role;
+                                           inst row/institution">
+                       <li><a tal:omit-tag="not: url" tal:attributes="href url"><span tal:content="fullname" /></a><span tal:condition="role">, 
+                       <span tal:omit-tag='' tal:content="role" /></span>
+                       <span tal:condition="inst">, 
+                          <span tal:omit-tag='' tal:content="inst" /></span>
+                       </li>
+                       </tal:define>
+                    
+                    </tal:block></ul>
+                 
+				</tal:collaborations>
+                <tal:collaborations tal:define="collaborations view/getPastGroupMembers" tal:condition="collaborations">
+					<h2 i18n:translate="heading_former_group_members">Former Group Members</h2>
+                    <ul>
+                       <tal:block repeat="row collaborations">
+                       <li tal:content="structure row"></li>
+                       
+                       </tal:block>
+                    </ul>
+				</tal:collaborations>
+                <tal:collaborations tal:define="collaborations view/getCollaborations" tal:condition="collaborations">
+					
+                    <h2 i18n:translate="heading_collaborators">Collaborators</h2>
+                    <ul>
+					<tal:block repeat="row collaborations">
+                       <tal:define define="fullname row/fullName;
+                                           url row/url;
+                                           role row/role;
+                                           inst row/institution">
+                       <li><a tal:omit-tag="not: url" tal:attributes="href url"><span tal:content="fullname" /></a><span tal:condition="role">, 
+                       <span tal:omit-tag='' tal:content="role" /></span>
+                       <span tal:condition="inst">, 
+                          <span tal:omit-tag='' tal:content="inst" /></span>
+                       </li>
+                       </tal:define>
+                    
+                    </tal:block></ul>				</tal:collaborations>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,20 @@
+<!-- please refer to the hCard/vCard specification on microformats.org -->
+
+<metal:namemacro define-macro="person_header">
+<h1>
+   <span class="fn" tal:content="string:${here/title_or_id}"/>
+   <span tal:content="string:${here/letters_after_name}"/>
+</h1>
+
+<div class="groupname" tal:define="groupname here/group_name"
+                       tal:condition="python: groupname"
+                       tal:content="groupname"/>
+
+
+<div class="title" id="jobtitle" tal:define="job_title here/job_title; univ_job_title here/univ_job_title">
+                <metal:fieldMacro use-macro="python:here.widget('job_title', mode='view')" /><span tal:condition="python:(univ_job_title<>'') and (job_title<>'')">, </span>
+                <metal:fieldMacro use-macro="python:here.widget('univ_job_title', mode='view')" />
+</div>
+
+
+</metal:namemacro>

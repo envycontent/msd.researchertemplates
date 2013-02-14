@@ -1,0 +1,17 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      >
+<body>
+    <div id="keywords" metal:define-macro="keywords" tal:define="keywords view/getKeywords">
+    
+    <tal:keywords tal:repeat="keyword keywords">
+    
+        <h2 tal:content="python:keyword['label']"></h2>
+        <p class="discreet" tal:content="python:keyword['description']" />
+        <ul>
+            <li tal:repeat="value python:keyword['values']" tal:content="value" />
+        </ul>
+    </tal:keywords>   
+    </div>
+</body>
+</html>

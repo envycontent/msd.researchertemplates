@@ -1,0 +1,51 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" i18n:domain="RDSLocal">
+	<body>
+		<div metal:define-macro="person_collaborations_old">
+			<!--collaborations-->
+			<div id="collaborations">
+				<tal:collaborations tal:define="collaborations python:here.getReferenceImpl('collaborates_with');" tal:condition="collaborations">
+					<h2 i18n:translate="heading_collaborators">Collaborators</h2>
+					<metal:fieldMacro use-macro="python:here.widget('collaboration',mode='view')" />
+				</tal:collaborations>
+			</div>
+		</div>
+		
+		
+        <div metal:define-macro="collaborations">
+			<!--collaborations-->
+			<div id="collaborations">
+				<tal:collaborations tal:define="collaborations view/groupMembers" tal:condition="collaborations">
+					<h2 i18n:translate="heading_group_members">Group Members</h2>
+                   
+                    <ul>
+					<tal:block repeat="row collaborations">
+                       <li tal:content="structure row"></li>
+                    </tal:block>
+                    </ul>
+                 
+				</tal:collaborations>
+                <tal:collaborations tal:define="collaborations view/pastGroupMembers" tal:condition="collaborations">
+					<h2 i18n:translate="heading_former_group_members">Former Group Members</h2>
+                    <ul>
+                       <tal:block repeat="row collaborations">
+                       <li tal:content="structure row"></li>
+                       
+                       </tal:block>
+                    </ul>
+				</tal:collaborations>
+                <tal:collaborations tal:define="collaborations view/allCollaborators" tal:condition="collaborations">
+					
+                    <h2 i18n:translate="heading_collaborators">Collaborators</h2>
+                <ul>                    
+                <tal:block tal:repeat="row collaborations">
+                    
+                      <li tal:content="structure row"></li>
+                       
+                    
+                    </tal:block>
+                     </ul>
+				</tal:collaborations>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,12 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" i18n:domain="RDSLocal">
+  <body>
+    <div metal:define-macro="additional_info">
+      <div id="additionalsummary" i18n:translate=""
+	   tal:define="addsum view/getAdditional_info"
+           tal:condition="addsum"
+           tal:content="structure addsum">
+	
+      </div>
+    </div>
+  </body>
+</html>

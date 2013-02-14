@@ -1,0 +1,144 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="msd.researchertemplates">
+<body>
+
+	<metal:main fill-slot="main">
+	    <metal:main define-macro="main">
+
+<!-- please refer to the hCard/vCard specification on microformats.org -->
+    <tal:view define="view context/@@researchermain_view">
+    <div class="vcard">
+        <div>
+          
+         <metal:personHeader use-macro="here/researcher_header/macros/header" />
+         <metal:description use-macro="here/researcher_description/macros/description" />
+
+        </div>
+      
+        <div>
+			<div id="summaryimage">
+					   <img tal:attributes="src view/getImageURL" alt="" />
+					<p class="discreet"
+					   tal:content="view/getImageCaption">Image Caption</p>
+			 </div>
+            <metal:contact use-macro="here/researcher_contact/macros/contact" />
+                
+            <!-- tabs -->
+            <p></p>
+            <div id="tabs" style="clear: both;">	
+				<h2 class="kuputab-tab-definer-default" i18n:translate="heading_research">Research summary</h2>
+				<p tal:replace="structure view/getSummary" />
+				<div id="academicFunding" tal:define="quals view/getFundingSources" tal:condition="quals">
+						<h3 i18n:translate="heading_funding">Sources of Funding</h3>
+						<ul>
+						 <tal:repeat repeat="row quals">
+						
+						
+						  <tal:define define="furl row/url;
+											  fbody row/fundingbody;">
+						   <li>
+							  <a tal:omit-tag="not: furl" tal:attributes="href python:here.checkURLPrefix(furl)"><span tal:content="fbody" /></a>
+							  <span tal:content="row/startYear"/><span tal:condition="row/endYear">- <span tal:content="row/endYear"/></span>
+						   </li>
+						  </tal:define>
+					   
+						</tal:repeat>
+						</ul>	
+				</div>
+			
+				
+				<!--collaborations-->
+				<tal:cond tal:define="collab_view context/@@researchercollaborations_view;
+				                      gm collab_view/getGroupMembers; 
+									  pm collab_view/getPastGroupMembers;
+									  c collab_view/getCollaborators;
+									  hasCollab gm|pm|c|nothing"
+				  tal:condition="hasCollab" >
+					<h2 class="kuputab-tab-definer" i18n:translate="collaborations">Collaborations</h2>
+					<tal:collaborations tal:condition="gm">
+						<h3 i18n:translate="heading_group_members">Group Members</h3>
+					   
+						<ul>
+						<tal:block repeat="row collaborations">
+						   <li tal:content="structure row"></li>
+						</tal:block>
+						</ul>
+					 </tal:collaborations>
+					 
+					<tal:collaborations tal:condition="pm">
+						<h3 i18n:translate="heading_former_group_members">Former Group Members</h3>
+						<ul>
+						   <tal:block repeat="row collaborations">
+						   <li tal:content="structure row"></li>
+						   
+						   </tal:block>
+						</ul>
+					</tal:collaborations>
+					
+					<tal:collaborations tal:condition="c">
+						<h3 i18n:translate="heading_collaborators">Collaborators</h3>
+						<ul>                    
+						<tal:block tal:repeat="row collaborations">
+							<li tal:content="structure row"></li>
+						 </tal:block>
+						 </ul>
+					</tal:collaborations>		
+				</tal:cond>
+				
+				
+				<!-- themes -->
+				<tal:cond tal:define="themes view/getThemes"
+				          tal:condition="themes" >
+					<h2 class="kuputab-tab-definer" i18n:translate="research_themes">Research Themes</h2>
+					   <ul tal:condition="themes">
+						   <li tal:repeat="theme themes"
+						   ><a tal:attributes="href theme/absolute_url;
+											   title theme/Description"
+							   tal:content="theme/Title"></a></li>
+					   </ul>
+				</tal:cond>
+			
+			    
+			    
+			
+			    <!--biographical details-->
+				<tal:cond tal:define="bio view/getBiography"
+				          tal:condition="bio" >
+						<h2 class="kuputab-tab-definer" i18n:translate="biography">Biography</h2>
+						<div tal:content="structure bio" />
+				   
+				
+				  <div id="academicBackground" 
+				  tal:define="quals view/getAcademicBackground" 
+				  tal:condition="quals">
+					<h3>Awards Training and Qualifications</h3>
+						<ul>
+						  <tal:repeat repeat="row quals">	
+							 <li tal:content="structure row"></li>
+						  </tal:repeat>
+						</ul>   
+					</div>
+				</tal:cond>
+				
+			<!-- research programmes not included -->
+			<!-- keywords not included -->	
+				
+            </div> 
+            <!-- tabs end -->
+        
+            
+            
+            <!--  TODO: This is missing -->
+            <!-- metal:bibliography use-macro="here/researcher_bibliography/macros/bibliography" /-->
+ 
+
+    </div>
+    </tal:view>
+    </metal:main>
+
+
+</metal:main>
+</body>
+</html>

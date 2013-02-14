@@ -1,0 +1,53 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="msd.researchertemplates">
+<body>
+
+	<metal:main fill-slot="main">
+	    <metal:main define-macro="main">
+
+
+<!-- please refer to the hCard/vCard specification on microformats.org -->
+    <tal:view define="view context/@@researchermain_view">
+    <div class="vcard">
+        <div id="personheader">
+          
+         <metal:personHeader use-macro="here/researcher_header/macros/header" />
+         <metal:description use-macro="here/researcher_description/macros/description" />
+
+        </div>
+        <div id="personbody">
+            <div id="personleftcolumn">
+            <metal:contact use-macro="here/researcher_contact/macros/contact" />
+                
+            <!-- research -->
+            <metal:researchsummary use-macro="here/researcher_research/macros/research" />
+            <metal:funding use-macro="here/researcher_funding/macros/funding" />
+            <metal:biography use-macro="here/researcher_biography/macros/biography" />
+            </div> 
+            
+            <div id="personrightcolumn"> 
+            <!--
+            <metal:themes use-macro="here/researcher_themes/macros/themes" />
+            <metal:themes use-macro="here/researcher_programmes/macros/programmes" />
+             -->
+
+            <metal:collaboration use-macro="here/researcher_collaborations/macros/collaborations" />
+            
+<!--
+            <metal:collaboration use-macro="here/researcher_keywords/macros/keywords" />
+ -->       
+            <!--  TODO: This is missing -->
+            <!-- metal:bibliography use-macro="here/researcher_bibliography/macros/bibliography" /-->
+        </div>                    
+        <!-- end leftcolumn -->   
+
+    </div>
+    </tal:view>
+    </metal:main>
+
+
+</metal:main>
+</body>
+</html>

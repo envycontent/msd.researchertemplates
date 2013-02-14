@@ -1,0 +1,16 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <body>
+
+    <div id="research-themes" metal:define-macro="themes">
+      <div id="themes" tal:define="themes view/getThemes">
+	    <h2 i18n:translate="heading_research_themes">Research Themes</h2>
+           <ul tal:condition="themes">
+               <li tal:repeat="theme themes"
+               ><a tal:attributes="href theme/absolute_url;
+                                   title theme/Description"
+                   tal:content="theme/Title"></a></li>
+           </ul>
+     	</div>
+    </div>
+  </body>
+</html>

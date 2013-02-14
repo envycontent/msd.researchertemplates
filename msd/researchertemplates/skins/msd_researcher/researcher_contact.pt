@@ -1,0 +1,139 @@
+<!-- please refer to the hCard/vCard specification on microformats.org -->
+
+<metal:contactmacro define-macro="contact">
+
+  <div id="contact" tal:define="view context/@@researchercontact_view">
+    <div id="contactDetails">
+      <table tal:define="depts view/getUnitsWithURLs; 
+                         college view/hasCollege;">
+        <tr tal:define="webpages view/getUrl" tal:condition="webpages">
+          <th i18n:translate="heading_web">
+            Web&nbsp;           
+          </th>
+          <td >
+            <tal:repeat repeat="webpage webpages">
+	        <a href="" tal:attributes="href webpage;
+                               class string:url" tal:content="python:plone_view.cropText(webpage,35)" target="_blank">Personal Website</a><br />  
+              </tal:repeat>    
+          </td>
+        </tr>
+        <tal:omit on-error="nothing">
+          <tr  tal:condition="view/getEmail">
+            <th i18n:translate="heading_email">
+              Email&nbsp;            
+            </th>
+            <td>
+              <a href="" tal:attributes="href string:mailto:${view/getEmail};
+                                         class string:email"
+                 tal:content="view/getEmail"
+                 tal:on-error="string: ">#</a>         
+            </td>
+          </tr>
+        </tal:omit>
+        
+        <tal:omit on-error="nothing">
+          <tr class="tel" tal:condition="view/getPhone">
+            <th i18n:translate="heading_telephone">
+              <span class="type">Tel&nbsp; </span>         
+            </th>
+            <td class="value">
+              <span tal:on-error="string: "  tal:replace="view/getPhone" />         
+            </td>
+          </tr> 
+        </tal:omit>
+        
+        <tal:omit on-error="nothing">
+          <tr class="tel" tal:condition="view/getFax">
+            <th i18n:translate="heading_fax" class="type">
+              Fax&nbsp;         
+            </th>
+            <td class="value">
+              <span tal:replace="view/getFax"
+                    tal:on-error="string: " />        
+            </td>
+          </tr> 
+        </tal:omit>
+        
+        <tr tal:condition="view/getPaName">
+          <th>
+            <span i18n:translate="heading_pa">PA</span>&nbsp;       
+          </th>
+          <td>
+            <span tal:replace="view/getPaName"
+                  tal:on-error="string: " />        
+          </td>
+        </tr>
+        <tal:omit on-error="nothing">
+          <tr tal:condition="view/getPaEmail">
+            <th i18n:translate="heading_email_pa">
+              Email (PA)&nbsp;           
+            </th>
+            <td>
+              <a href="" tal:attributes="href string:mailto:${view/getPaEmail};
+                                         class string:email"
+                 tal:content="view/getPaEmail"
+                 tal:on-error="string: ">#</a>         
+            </td>
+          </tr>
+        </tal:omit>
+        <tal:omit on-error="nothing">
+          <tr class="tel" tal:condition="view/getPaPhone">
+            <th i18n:translate="heading_tel_pa">
+              <span class="type">Tel</span> (PA)&nbsp;         
+            </th>
+            <td class="value">
+              <span tal:on-error="string: "  tal:replace="view/getPaPhone" />         
+            </td>
+          </tr> 
+        </tal:omit>
+        <tal:omit on-error="nothing">
+          <tr class="tel" tal:condition="view/getPaFax">
+            <th i18n:translate="heading_fax_pa">
+              <span class="type">Fax</span> (PA)&nbsp;         
+            </th>
+            <td class="value">
+              <span tal:replace="view/getPaFax"
+                    tal:on-error="string: " />        
+            </td>
+          </tr> 
+        </tal:omit>            
+        <tr class="adr" tal:condition="view/getContactAddress"
+	    tal:attributes="id python:(not (college or depts) and 'last')
+			    or ''">
+          <th i18n:translate="heading_contact_address">
+            Contact address&nbsp;         
+          </th>
+          <td class="value">
+            <span tal:replace="structure view/getContactAddress" />
+          </td>
+        </tr>
+        <tr class="dept"
+	       tal:condition="depts">
+          <th i18n:translate="heading_department">
+            Department&nbsp;       
+          </th>
+          <td class="value" >
+            <tal:repeat repeat="dept depts">
+                <a  tal:attributes="href python:dept['url']"
+                    tal:content="python:dept['name']"></a>
+              <tal:condition condition="not: repeat/dept/end"><br /></tal:condition>
+            </tal:repeat>
+          </td>
+        </tr>
+        
+        <tr tal:condition="view/hasCollege"
+	    id="last">
+          <th i18n:translate="heading_college">
+            College        
+          </th>
+          <td tal:define="college view/getCollegeWithURL">
+	         <a tal:condition="college" 
+                tal:attributes="href python:college['url']"
+                tal:content="python:college['name']"></a>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+</metal:contactmacro>

@@ -1,0 +1,19 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      i18n:domain="RDSLocal">
+  <body>
+    <div metal:define-macro="person_themes">
+      <div id="themes" tal:define="themesview context/@@researcher_theme_labels">
+	     <!-- rewrite this view so that it loops through the available themes -->
+     	<tal:themes1  tal:condition="python: themesview.displayThemes('themes1')">
+             <h2 i18n:translate="heading_research_areas">Research Themes</h2>
+     	  <h3 i18n:translate="heading_themes">
+     	     <span tal:content="python: themesview.getThemesLabel('themes1','Divisional Themes')" />
+     	  </h3>
+     	  <ul><tal:rep  tal:repeat="theme python: themesview.getThemesList('themes1')">
+     	    <li tal:content="structure theme" ></li>
+     	  </tal:rep></ul>                                
+     	</tal:themes1>
+     	</div>
+    </div>
+  </body>
+</html>

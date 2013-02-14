@@ -1,0 +1,11 @@
+<!-- please refer to the hCard/vCard specification on microformats.org -->
+
+<metal:namemacro define-macro="person_header">
+<h1>
+   <span class="fn" tal:content="string:${view/getFullname}"/>
+   <span tal:content="string:${view/getLetters_after_name}"/>
+</h1>
+
+<div class="title" id="jobtitle" tal:content='view/getJobtitle'>
+</div>
+</metal:namemacro>

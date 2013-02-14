@@ -1,0 +1,25 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" i18n:domain="RDSLocal">
+	<body>
+		
+        <div metal:define-macro="funding">
+			
+            <div id="academicFunding" tal:define="quals view/fundingSources" tal:condition="quals">
+					<h3 i18n:translate="heading_funding">Sources of Funding</h3>
+                    <ul>
+                     <tal:repeat repeat="row quals">
+                    
+					
+                      <tal:define define="furl row/url;
+                                          fbody row/fundingbody;">
+                       <li>
+                          <a tal:omit-tag="not: furl" tal:attributes="href python:here.checkURLPrefix(furl)"><span tal:content="fbody" /></a>
+                          <span tal:content="row/startYear"/><span tal:condition="row/endYear">- <span tal:content="row/endYear"/></span>
+                       </li>
+                      </tal:define>
+                   
+                    </tal:repeat>
+                    </ul>	
+			</div>
+		</div>
+	</body>
+</html>

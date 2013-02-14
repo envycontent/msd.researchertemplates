@@ -1,0 +1,51 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" i18n:domain="RDSLocal">
+	<body>
+		<div metal:define-macro="bibliography"
+             tal:define="contentFilter python: {'portal_type' : 'BibliographyList'};
+                         selection python: here.getFolderContents(contentFilter=contentFilter);
+                         ">
+		<tal:getRecent tal:condition="not: selection" >
+          <tal:pubs tal:define="pubsall python:context.getBRefs('authorOf');
+                                pubtitle string:Recent Publications;
+                                showlink python:len(pubsall) > 5;
+				publink string:full_bibliography">        
+            <metal:listing use-macro="here/person_bibliography/macros/bibliography_listing" />
+          </tal:pubs>
+        </tal:getRecent>
+        <tal:getSelected tal:condition="selection" tal:repeat="sel selection">
+            <tal:pubs tal:define="selected python:sel.getObject();
+                                  pubsall python:here.computeBib(selected);
+                                  pubtitle python:selected.Title();
+				  publink python:selected.absolute_url();
+                                  showlink python:len(pubsall) > 5">
+                                  
+            <metal:listing use-macro="here/person_bibliography/macros/bibliography_listing" />                 
+            </tal:pubs>
+        </tal:getSelected>
+		</div>
+        
+        <div metal:define-macro="bibliography_listing">
+           <div id="publications" tal:condition="pubsall">
+				<tal:sorted tal:define="sort_on python:(('publication_year','cmp', 'desc'),
+                                   ('Authors', 'nocase', 'asc'));
+                                   pubssorted python:sequence.sort(pubsall, sort_on);
+                                   pubs python:pubssorted[:5];">
+					<h2 tal:content="pubtitle" />
+					<ul tal:repeat="obj pubs">
+						<li tal:on-error="nothing">
+							<span tal:content="structure python:obj.Authors(format='%L %F %m',withURL=1, context=here, methodname='getAuthorURL')">
+                   Authors</span> (<span tal:content="obj/getPublication_year">1990</span>)
+                            <a href="#" tal:attributes="href obj/absolute_url; class python:obj.portal_type.replace(' ', '_')" 
+                                               tal:content="python:obj.Title() or obj.absolute_url(relative=1)">
+                             Sole target object's title</a>
+							<span tal:replace="obj/Source">Journal Title</span>
+						</li>
+					</ul>
+				</tal:sorted>
+				<div class="profile_link" id="profile_link_forward" tal:condition="showlink">
+					<a tal:attributes="href publink"><span i18n:translate="text_link_to_more">More</span></a>
+				</div>
+			</div> 
+		</div>
+	</body>
+</html>

@@ -1,0 +1,39 @@
+
+
+<metal:macro define-macro="researcher-entry">
+<div class="tileItem visualIEFloatFix"
+     tal:define="item_object item/getObject;"
+     tal:condition="python:item_type in ['Researcher','ORAResearcher']">
+     
+
+             <h2 class="tileHeadline"
+                 metal:define-macro="listitem">
+
+                 <a href="#"
+                    class="summary url"
+
+                    tal:attributes="href python: item_url+'/';"
+                    tal:content="item_title_or_id">
+                     Item Title
+                 </a>
+
+             </h2>
+
+             <p class="tileBody">
+                 <span tal:omit-tag="" tal:condition="python:item_type == 'ORAResearcher'"
+                                        tal:content="item_object/getJob_title" />
+                  <span tal:omit-tag="" tal:condition="python:item_type == 'Researcher'"
+                                        tal:content="python:', '.join(item_object.getJob_titles())" />                      
+                                        <br />
+                 <span tal:omit-tag="" tal:condition="not:item_description">
+                     &nbsp;
+                 </span>
+                 <span class="description" tal:content="item_description">
+                     description
+                 </span>
+             </p>
+
+     <div class="visualClear"><!-- --></div>
+
+</div>
+</metal:macro>

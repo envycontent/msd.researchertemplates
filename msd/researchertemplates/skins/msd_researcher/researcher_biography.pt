@@ -1,0 +1,27 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" i18n:domain="RDSLocal">
+  <body>
+    
+    <div metal:define-macro="biography" tal:omit-tag="">
+      <!--biographical details-->
+      <tal:cond tal:define="bio view/getBiography">
+          <div tal:condition="bio" id="biography">
+            <h2>Biography</h2>
+            <div tal:content="structure bio" />
+          </div>
+      </tal:cond>
+      
+      <div id="academicBackground" 
+      tal:define="quals view/getAcademicBackground" 
+      tal:condition="quals">
+    <h3>Awards Training and Qualifications</h3>
+        <ul>
+          <tal:repeat repeat="row quals">
+            
+             <li tal:content="structure row"></li>
+            
+          </tal:repeat>
+    </ul>   
+      </div>
+    </div>
+  </body>
+</html>

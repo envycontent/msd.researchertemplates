@@ -1,0 +1,16 @@
+<!-- please refer to the hCard/vCard specification on microformats.org -->
+
+<metal:researchmacro define-macro="person_research">
+
+  <div id="research">
+    <div id="summary">
+      <div id="summaryimage">
+           <img tal:replace="structure python: view.tag()" src="" alt="" />
+        <p i18n:translate="" class="discreet"
+           tal:content="view/getImageCaption">Image Caption</p>
+      </div>
+      <span tal:replace="structure view/getSummary" />
+    </div>   
+  </div>
+  
+</metal:researchmacro>

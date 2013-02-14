@@ -1,0 +1,35 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" i18n:domain="RDSLocal">
+	<body>
+		<div metal:define-macro="seealso">
+				
+			<!--See Also-->
+			<div id="seealso">
+				<tal:relatedItems tal:define="related python:here.computeRelatedItems();">
+                  <tal:block tal:condition="python:related">
+                    <h2 i18n:translate="heading_seealso">See Also</h2>
+                    <ul>
+                    <tal:related tal:repeat="item related"
+		                 tal:define="use_view_action site_properties/typesUseViewActionInListings|python:();">
+                        <li tal:define="
+                                desc      item/Description;
+                                item_type item/portal_type;
+                                item_url  item/absolute_url;
+				                item_url  python:test((item_type in use_view_action), item_url+'/view', item_url)">
+                            
+                            <a href="" class=""
+                                tal:attributes="href  item_url;
+                                                title item/Description;"
+                                tal:content="item/pretty_title_or_id">
+                                Related Item
+                            </a>
+                            
+                        </li>
+                    </tal:related>
+                    </ul>
+				  </tal:block>	
+				</tal:relatedItems>
+			</div>
+			
+		</div>
+	</body>
+</html>

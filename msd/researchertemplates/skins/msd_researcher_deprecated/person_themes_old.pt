@@ -1,0 +1,66 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      i18n:domain="RDSLocal">
+  <body>
+    <div metal:define-macro="person_themes">
+      <div id="themes" tal:define="themesview context/@@researcher_theme_labels">
+	<tal:themes1  tal:condition="python: themesview.displayThemes('themes1')">
+        <h2 i18n:translate="heading_research_areas">Research Themes</h2>
+	  <h3 i18n:translate="heading_themes">
+	     <span tal:content="python: themesview.getThemesLabel('themes1','Divisional Themes')" />
+	  </h3>
+	  <ul><tal:rep  tal:repeat="theme python: themesview.getThemesList('themes1')">
+	    <li tal:content="theme" ></li>
+	  </tal:rep></ul>                                
+	</tal:themes1>
+	<tal:themes2 tal:condition="python: themesview.displayThemes('themes2')">
+	  <h3 i18n:translate="heading_dept_research_areas">
+	     <span tal:content="python: themesview.getThemesLabel('themes2','Unit Research Areas')" />	    
+	  </h3> 
+	  <ul><tal:rep  tal:repeat="theme python: themesview.getThemesList('themes2')">
+	    <li><a i18n:attributes="title click_to_search"
+		   href="" title="Click to search" 
+		   tal:attributes="href python: context.portal_url() + '/themesearch?getThemes2%3Alist=' + theme + '&submit=Search'"  
+		   tal:content="theme" />
+	    </li>
+	  </tal:rep></ul>
+	</tal:themes2>
+	<tal:themes3  tal:condition="python: themesview.displayThemes('themes3')">
+	  <h3 i18n:translate="heading_subtheme">
+	     <span tal:content="python: themesview.getThemesLabel('themes3','Sub Themes')" />
+	  </h3> 
+	  <ul><tal:rep  tal:repeat="theme python: themesview.getThemesList('themes3')">
+	    <li><a i18n:attributes="title click_to_search"
+		   href="" title="Click to search" 
+		   tal:attributes="href python: context.portal_url() + '/themesearch?getThemes3%3Alist=' + theme + '&submit=Search'"  
+		   tal:content="theme" />
+	    </li>
+	  </tal:rep></ul>
+	</tal:themes3>
+	<tal:themes4  tal:condition="python: themesview.displayThemes('themes4')">
+	  <h3 i18n:translate="heading_diseases">
+	     <span tal:content="python: themesview.getThemesLabel('themes4','Diseases and Disorders')" />
+	  </h3> 
+	  <ul><tal:rep  tal:repeat="theme python: themesview.getThemesList('themes4')">
+	    <li><a i18n:attributes="title click_to_search"
+		   href="" title="Click to search" 
+		   tal:attributes="href python: context.portal_url() + '/themesearch?getThemes4%3Alist=' + theme + '&submit=Search'"  
+		   tal:content="theme" />
+	    </li>
+	  </tal:rep></ul>
+	</tal:themes4>
+	<tal:themes5  tal:condition="python: themesview.displayThemes('themes5')">
+	  <h3 i18n:translate="heading_resources">
+	     <span tal:content="python: themesview.getThemesLabel('themes5','Resources and Equipment')" />
+	  </h3> 
+	  <ul><tal:rep  tal:repeat="theme python: themesview.getThemesList('themes5')">
+	    <li><a i18n:attributes="title click_to_search"
+		   href="" title="Click to search" 
+		   tal:attributes="href python: context.portal_url() + '/themesearch?getThemes5%3Alist=' + theme + '&submit=Search'"  
+		   tal:content="theme" />
+	    </li>
+	  </tal:rep></ul>
+	</tal:themes5>
+      </div>
+    </div>
+  </body>
+</html>
