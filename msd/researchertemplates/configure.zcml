@@ -21,8 +21,6 @@
   
   <!-- -*- extra stuff goes here -*- -->
   
-  <include package="five.grok" />
-      <grok:grok package="." />
 
   
 
